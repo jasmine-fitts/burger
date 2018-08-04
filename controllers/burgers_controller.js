@@ -1,18 +1,18 @@
 var express = require("express");
 var router = express.Router();
 
-//Imports the model (burger.js) to use its database functions
+//Import the model (burger.js) to use its database functions
 var burger = require("../models/burger.js");
 
 //Create routes and set up login with the route
 
 router.get("/", function(req, res) {
     burger.all(function(data) {
-        var burgerObject = {
+        var hbsObject = {
             burgers: data
         };
-        console.log(burgerObject);
-        res.render("index", burgerObject);
+        console.log(hbsObject);
+        res.render("index", hbsObject);
     });
 });
 
@@ -40,6 +40,17 @@ router.put("/api/burgers/:id", function(req, res) {
             res.status(200).end();
         }
      });
+});
+
+router.delete("api/burger/:id", function(req, res) {
+    burger.delete(condition, function(result) {
+        if(result.affectedRows == 0) {
+
+            return res.status(404).end();
+        }else {
+            res.status(200).end();
+        }  
+    });
 });
 
 //Export routes for sever.js to use

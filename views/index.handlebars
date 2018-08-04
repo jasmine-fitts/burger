@@ -1,4 +1,56 @@
-<h1>Burgers</h1>
+<div class="jumbotron">
+  <h1 class="display-4">Shmurda Burgers</h1>
+  <p class="lead">Schmurda Burgers..Mmmm delicioso</p>
+</div>
 
-{{!-- {{#each burgers}}
-    {{#unless devoured}} --}}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h4>Schmurda Burgers Served</h4>
+          <ul>
+              <p>
+                  {{#each burgers}}
+                {{#unless devoured}}
+            <div>
+                {{this.id}}.{{this.burger_name}}
+                {{../burger-block devoured=true}}
+            <button data-burgerid="{{this.id}}" class=delburger>Devour It!</button>
+            </div>
+                {{/unless}}
+            {{/each}}
+              </p>
+          </ul>
+        </div>
+    </div>
+        <div class="col-md-4">
+            <h4>Schmurda Burgers Devoured</h4>
+            {{#each burgers}}
+                {{#if devoured}}
+        <div>
+            {{this.id}}{{this.burger_name}}
+            {{ ../burger-block devoured=false}}
+        </div>
+                {{/if}}
+            {{/each}}
+        </div>
+    </div>
+</div>
+    <div class="col=md-4">
+    </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+    </div>
+    <br>
+
+
+<form class="create-form">
+    <div class="form-group">
+        <input type="text" class="form-control" id="burger-input">
+            <small class="form-text">Enter the burger you want to eat and click the "Submit" button.</small>
+            <br>
+            <button type="submit" class="btn btn-warning" id="submit">Add a Burger</button>
+    </div>
+</form>
+</div> 
+
